@@ -4,12 +4,17 @@ project(ChangeMyName CXX)
 set(CMAKE_CXX_STANDARD 17)
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
-# Put Your .cpp files in line below
-add_executable(change_my_name_executable src/main.cpp)
+add_library(gameOfLife_core src/gameboard.cpp src/AlwaysNextTurn.cpp src/UserCommand.cpp) 
+target_include_directories(gameOfLife_core PUBLIC include)
 
+# Put Your .cpp files in line below
+add_executable(gameOfLife src/main.cpp)
+target_link_libraries(gameOfLife gameOfLife_core)
 
 # If You want to write some tests...
 option(USE_GTEST "Download compile and provide gtest/gmock" OFF)
+
+
 
 if(USE_GTEST)
         include(FetchContent)
