@@ -2,6 +2,9 @@
 #include "CommandSource.hpp"
 #include "AlwaysNextTurn.hpp"
 #include "UserCommand.hpp"
+#include "flatgameboard.hpp"
+#include "cylindergameboard.hpp"
+#include "torusgameboard.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -25,7 +28,9 @@ int main()
         cin>>wybrany_ksztalt;
     }
 
-    gameboard GameOfLife(30,30,0.5,wybrany_ksztalt);
+    if(wybrany_ksztalt=="flat"){
+    flatgameboard GameOfLife(30,30,0.5);
+
     UserCommand user_command_source;
     AlwaysNextTurn auto_command_source;
 
@@ -33,8 +38,31 @@ int main()
         GameOfLife.commandHandler(user_command_source);
     else if (wybrany_tryb == "auto")
         GameOfLife.commandHandler(auto_command_source);
+    }
 
+    if(wybrany_ksztalt=="cylinder"){
+    cylindergameboard GameOfLife(30,30,0.5);
+
+    UserCommand user_command_source;
+    AlwaysNextTurn auto_command_source;
+
+    if (wybrany_tryb == "user")
+        GameOfLife.commandHandler(user_command_source);
+    else if (wybrany_tryb == "auto")
+        GameOfLife.commandHandler(auto_command_source);
+    }
     
+    if(wybrany_ksztalt=="torus"){
+    torusgameboard GameOfLife(30,30,0.5);
+
+    UserCommand user_command_source;
+    AlwaysNextTurn auto_command_source;
+
+    if (wybrany_tryb == "user")
+        GameOfLife.commandHandler(user_command_source);
+    else if (wybrany_tryb == "auto")
+        GameOfLife.commandHandler(auto_command_source);
+    }
     /*gameboard b(30,30,0.7);
     for(int i=0; i<50; i++)
     {

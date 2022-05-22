@@ -7,18 +7,17 @@
 
 class gameboard
 {
-    private:
+    protected:
     int width,height;
     std::vector<std::vector<bool>> board;
     std::vector<std::vector<bool>> previousBoard;
-    std::string shape;
     public:
-    gameboard(int row, int col, float population, std::string shape);
-
+    gameboard(int row, int col, float population);
+    virtual ~gameboard() = default;
     //updates gameboard
     void nextMove();
 
-    int countNeighbours(int row, int col) const;
+    virtual int countNeighbours(int row, int col) const = 0;
     void display() const;
     bool stateOfCellInNextGen(int row, int col)const;
     void play();

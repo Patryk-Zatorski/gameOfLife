@@ -4,7 +4,7 @@ project(ChangeMyName CXX)
 set(CMAKE_CXX_STANDARD 17)
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
-add_library(gameOfLife_core src/gameboard.cpp src/AlwaysNextTurn.cpp src/UserCommand.cpp) 
+add_library(gameOfLife_core src/gameboard.cpp src/AlwaysNextTurn.cpp src/UserCommand.cpp src/flatgameboard.cpp src/cylindergameboard.cpp src/torusgameboard.cpp) 
 target_include_directories(gameOfLife_core PUBLIC include)
 
 # Put Your .cpp files in line below

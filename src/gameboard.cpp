@@ -10,7 +10,7 @@ using namespace std;
 
 //this constructor is going to create randomized board
 //population is percentage of how filled the board will be
-gameboard::gameboard(int width, int height, float population, string shape) : width(width), height(height), shape(shape)
+gameboard::gameboard(int width, int height, float population) : width(width), height(height)
 {
     //this->width=width;
     //this->height=height;
@@ -47,7 +47,7 @@ gameboard::gameboard(int width, int height, float population, string shape) : wi
 }
 
 
-int gameboard::countNeighbours(int row, int col) const
+/*int gameboard::countNeighbours(int row, int col) const
 {
 if(row>this->height||col>this->width) return -1;
 if(row<0||col<0) return -1;
@@ -235,6 +235,7 @@ if(shape=="torus")
 
 return amount;
 }
+*/
 
 
 bool gameboard::stateOfCellInNextGen(int row, int col) const
@@ -293,8 +294,19 @@ void gameboard::play(){
 void gameboard::commandHandler(CommandSource& command_source){
     play();
     while(true){
-    string command=command_source.next_command();
-    if(command=="quit")return;
-    if(command=="next")play();
+        string command=command_source.next_command();
+        if(command=="quit")return;
+        if(command=="next")play();
+        if(command=="change"){
+            int row=0;
+            int col=0;
+            cout<<endl<<"Podaj rzad:";
+            cin>>row;
+            cout<<endl<<"Podaj kolumne:";
+            cin>>col;
+            if(this->board[row][col]==0){this->board[row][col]=1;}
+            else if(this->board[row][col]==1)this->board[row][col]=0;
+            display();
+        }
     }
 }
